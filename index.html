@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Илон Маск — предприниматель и инноватор</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(13, 17, 23, 0.95);
+      border-bottom: 1px solid #30363d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    header .logo { font-weight: bold; font-size: 1.2rem; color: #58a6ff; }
+    nav a {
+      color: #e6edf3;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #58a6ff; }
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #8b949e;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #238636;
+      color: #fff;
+      padding: 0.8rem 1.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #2ea043; }
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .bio p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #c9d1d9;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #58a6ff;
+    }
+    .card h3 { color: #58a6ff; margin-bottom: 0.5rem; }
+    .card p { color: #8b949e; font-size: 0.95rem; }
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid #30363d;
+    }
+    .timeline-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -2.45rem;
+      top: 0.4rem;
+      width: 12px;
+      height: 12px;
+      background: #58a6ff;
+      border-radius: 50%;
+    }
+    .year { font-weight: bold; color: #58a6ff; }
+    .fact-box {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #30363d;
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 640px) {
+      header { flex-direction: column; gap: 1rem; }
+      nav a { margin: 0 0.7rem; }
+      .hero h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Илон Маск</div>
+    <nav>
+      <a href="#bio">Биография</a>
+      <a href="#companies">Компании</a>
+      <a href="#timeline">Хронология</a>
+      <a href="#facts">Факты</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Илон Маск</h1>
+    <p>Предприниматель, инженер и основатель компаний, которые меняют автомобилестроение, космонавтику, энергетику и коммуникации.</p>
+    <button class="btn" onclick="document.getElementById('companies').scrollIntoView({behavior: 'smooth'})">Узнать о компаниях</button>
+  </div>
+
+  <section id="bio" class="bio">
+    <h2>Биография</h2>
+    <p>Илон Рив Маск родился 28 июня 1971 года в Претории, ЮАР. В юности переехал в Канаду, а затем в США, где учился в University of Pennsylvania, получив степени в области физики и экономики.</p>
+    <p>Свой первый успех он получил в 1995 году, основав компанию Zip2, которую продал в 1999 году. Затем он создал онлайн-платёжную систему X.com, которая вошла в состав PayPal.</p>
+    <p>Сегодня Маск известен как генеральный директор Tesla и SpaceX, а также как владелец социальной платформы X, бывшей Twitter.</p>
+  </section>
+
+  <section id="companies">
+    <h2>Компании</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Tesla</h3>
+        <p>Производитель электромобилей, аккумуляторов и солнечных систем. Маск руководит компанией с 2008 года.</p>
+      </div>
+      <div class="card">
+        <h3>SpaceX</h3>
+        <p>Основана в 2002 году. Разрабатывает ракеты Falcon и корабль Dragon, многоразовые ракетные технологии и программу Starlink.</p>
+      </div>
+      <div class="card">
+        <h3>Neuralink</h3>
+        <p>Нейротехнологическая компания, основанная в 2016 году. Разрабатывает интерфейсы «мозг — компьютер».</p>
+      </div>
+      <div class="card">
+        <h3>The Boring Company</h3>
+        <p>Основана в 2016 году. Занимается строительством туннелей для транспорта и инфраструктуры.</p>
+      </div>
+      <div class="card">
+        <h3>X</h3>
+        <p>Социальная платформа, которую Маск приобрёл в 2022 году и переименовал в X в 2023 году.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <h2>Хронология</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="year">1971</span>
+        <p>Родился в Претории, ЮАР.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1995</span>
+        <p>Основал Zip2 — компанию по созданию онлайн-справочников для СМИ.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1999</span>
+        <p>Продал Zip2 и основал X.com, которая позже стала частью PayPal.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2002</span>
+        <p>Основал SpaceX.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2004</span>
+        <p>Стал одним из основных инвесторов Tesla.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2008</span>
+        <p>Возглавил Tesla как генеральный директор.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2022</span>
+        <p>Завершил приобретение Twitter.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="facts">
+    <h2>Случайный факт</h2>
+    <div class="fact-box" id="factBox">Нажмите кнопку, чтобы узнать интересный факт.</div>
+    <div style="text-align:center;">
+      <button class="btn" onclick="showFact()">Показать факт</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025. Информационный сайт о Илоне Маске.</p>
+  </footer>
+
+  <script>
+    const facts = [
+      "Илон Маск получил степени бакалавра по физике и экономике в University of Pennsylvania.",
+      "SpaceX стала первой частной компанией, которая доставила грузовой корабль к МКС.",
+      "Tesla Model S в 2013 году получила высшую оценку безопасности от NHTSA.",
+      "Маск в детстве научился программировать и в возрасте около 12 лет продал простую видеоигру.",
+      "Falcon 9 — ракета, первые ступени которой многократно использовались и успешно садились обратно.",
+      "The Boring Company назвала свою первую испытательную трассу в Лас-Вегасе именем Prufrock."
+    ];
+
+    function showFact() {
+      const box = document.getElementById("factBox");
+      const index = Math.floor(Math.random() * facts.length);
+      box.textContent = facts[index];
+    }
+  </script>
+
+</body>
+</html>
