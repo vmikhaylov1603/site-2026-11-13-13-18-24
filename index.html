@@ -35,16 +35,26 @@
       text-align: center;
       padding: 6rem 2rem;
       background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+      position: relative;
+      overflow: hidden;
     }
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
     }
     .hero p {
       font-size: 1.2rem;
       color: #8b949e;
       max-width: 700px;
       margin: 0 auto 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero .btn {
+      position: relative;
+      z-index: 1;
     }
     .btn {
       display: inline-block;
@@ -58,6 +68,100 @@
       transition: background 0.2s;
     }
     .btn:hover { background: #2ea043; }
+
+    /* ===== Анимация летающей машины ===== */
+    .flyer-lane {
+      position: absolute;
+      top: 1.5rem;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .flyer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 180px;
+      animation: fly-across 14s linear infinite;
+    }
+    .flyer-body {
+      animation: bob 1.6s ease-in-out infinite;
+      transform-origin: 50% 50%;
+    }
+    .flyer-body svg {
+      width: 180px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(88, 166, 255, 0.45));
+    }
+    .rotor {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: spin 0.25s linear infinite;
+    }
+    .glow {
+      animation: pulse 0.8s ease-in-out infinite alternate;
+    }
+    .exhaust {
+      position: absolute;
+      left: -6px;
+      top: 58%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #58a6ff 0%, rgba(88, 166, 255, 0) 70%);
+      opacity: 0;
+      animation: puff 0.9s ease-out infinite;
+    }
+    .exhaust.e2 { animation-delay: 0.3s; }
+    .exhaust.e3 { animation-delay: 0.6s; }
+    .shadow {
+      position: absolute;
+      left: 20px;
+      top: 118px;
+      width: 120px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.45);
+      filter: blur(3px);
+      animation: shadow-pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes fly-across {
+      0%   { transform: translateX(-200px); }
+      100% { transform: translateX(calc(100vw + 200px)); }
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-14px) rotate(2deg); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    @keyframes pulse {
+      from { opacity: 0.4; }
+      to   { opacity: 1; }
+    }
+    @keyframes puff {
+      0%   { transform: translateX(0) scale(0.6); opacity: 0.9; }
+      100% { transform: translateX(-60px) scale(2.2); opacity: 0; }
+    }
+    @keyframes shadow-pulse {
+      0%, 100% { transform: scaleX(1); opacity: 0.45; }
+      50%      { transform: scaleX(0.7); opacity: 0.2; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flyer, .flyer-body, .rotor, .glow, .exhaust, .shadow {
+        animation: none;
+      }
+      .flyer { left: 50%; transform: translateX(-50%); }
+      .exhaust { display: none; }
+    }
+
     section {
       max-width: 1000px;
       margin: 0 auto;
@@ -151,6 +255,37 @@
   </header>
 
   <div class="hero">
+    <div class="flyer-lane" aria-hidden="true">
+      <div class="flyer">
+        <div class="flyer-body">
+          <svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+            <!-- Лопасти (вращающийся ротор) -->
+            <ellipse class="rotor" cx="90" cy="14" rx="70" ry="5" fill="#8b949e" opacity="0.85"/>
+            <rect x="86" y="14" width="8" height="12" fill="#30363d"/>
+            <!-- Корпус -->
+            <path d="M18 52 Q20 34 48 32 L118 32 Q146 34 158 50 Q162 58 150 62 L30 62 Q16 60 18 52 Z"
+                  fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+            <!-- Кабина -->
+            <path d="M58 34 Q66 22 92 22 Q112 22 120 34 Z" fill="#58a6ff" opacity="0.7"/>
+            <path d="M66 33 Q72 27 90 27 Q104 27 112 33 Z" fill="#c9e4ff" opacity="0.6"/>
+            <!-- Полоса -->
+            <rect x="34" y="46" width="112" height="3" rx="1.5" fill="#238636"/>
+            <!-- Фары -->
+            <circle class="glow" cx="156" cy="52" r="3" fill="#ffd33d"/>
+            <!-- Колёса / опоры -->
+            <circle cx="46" cy="64" r="5" fill="#0d1117" stroke="#8b949e" stroke-width="1.5"/>
+            <circle cx="130" cy="64" r="5" fill="#0d1117" stroke="#8b949e" stroke-width="1.5"/>
+            <!-- Двигатель сзади -->
+            <rect x="8" y="44" width="14" height="10" rx="3" fill="#30363d"/>
+          </svg>
+        </div>
+        <span class="exhaust"></span>
+        <span class="exhaust e2"></span>
+        <span class="exhaust e3"></span>
+      </div>
+      <div class="shadow"></div>
+    </div>
+
     <h1>Илон Маск</h1>
     <p>Предприниматель, инженер и основатель компаний, которые меняют автомобилестроение, космонавтику, энергетику и коммуникации.</p>
     <button class="btn" onclick="document.getElementById('companies').scrollIntoView({behavior: 'smooth'})">Узнать о компаниях</button>
