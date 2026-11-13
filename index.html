@@ -85,6 +85,11 @@
       left: 0;
       width: 180px;
       animation: fly-across 14s linear infinite;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    .flyer.flipped {
+      animation-direction: reverse;
     }
     .flyer-body {
       animation: bob 1.6s ease-in-out infinite;
@@ -95,6 +100,10 @@
       height: auto;
       display: block;
       filter: drop-shadow(0 0 8px rgba(88, 166, 255, 0.45));
+      transition: transform 0.3s;
+    }
+    .flyer.flipped .flyer-body svg {
+      transform: scaleX(-1);
     }
     .rotor {
       transform-box: fill-box;
@@ -117,6 +126,11 @@
     }
     .exhaust.e2 { animation-delay: 0.3s; }
     .exhaust.e3 { animation-delay: 0.6s; }
+    .flyer.flipped .exhaust {
+      left: auto;
+      right: -6px;
+      animation-name: puff-flipped;
+    }
     .shadow {
       position: absolute;
       left: 20px;
@@ -148,6 +162,10 @@
     @keyframes puff {
       0%   { transform: translateX(0) scale(0.6); opacity: 0.9; }
       100% { transform: translateX(-60px) scale(2.2); opacity: 0; }
+    }
+    @keyframes puff-flipped {
+      0%   { transform: translateX(0) scale(0.6); opacity: 0.9; }
+      100% { transform: translateX(60px) scale(2.2); opacity: 0; }
     }
     @keyframes shadow-pulse {
       0%, 100% { transform: scaleX(1); opacity: 0.45; }
@@ -256,7 +274,7 @@
 
   <div class="hero">
     <div class="flyer-lane" aria-hidden="true">
-      <div class="flyer">
+      <div class="flyer" id="flyer" role="button" tabindex="0" title="Развернуть машину">
         <div class="flyer-body">
           <svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
             <!-- Лопасти (вращающийся ротор) -->
@@ -385,6 +403,18 @@
       const index = Math.floor(Math.random() * facts.length);
       box.textContent = facts[index];
     }
+
+    const flyer = document.getElementById("flyer");
+    function turnAround() {
+      flyer.classList.toggle("flipped");
+    }
+    flyer.addEventListener("click", turnAround);
+    flyer.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        turnAround();
+      }
+    });
   </script>
 
 </body>
